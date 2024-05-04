@@ -7,7 +7,7 @@ import (
 	"io"
 	"net"
 
-	"github.com/marcell7/teenypubsub/protocol"
+	"github.com/marcell7/MQ/protocol"
 )
 
 type Publisher interface {

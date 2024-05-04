@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/marcell7/teenypubsub/broker"
+	"github.com/marcell7/MQ/broker"
 )
 
 func main() {

@@ -1,3 +1,3 @@
-module github.com/marcell7/teenypubsub
+module github.com/marcell7/MQ
 
 go 1.18

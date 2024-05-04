@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/marcell7/teenypubsub/broker"
+	"github.com/marcell7/MQ/broker"
 )
 
 func TestPublisher(t *testing.T) {

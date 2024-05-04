@@ -9,7 +9,7 @@ import (
 	"net"
 	"sync"
 
-	"github.com/marcell7/teenypubsub/protocol"
+	"github.com/marcell7/MQ/protocol"
 )
 
 type Server interface {
