@@ -1,6 +1,6 @@
 # MQ
 
-This is just an experimental message queue and is not suitable for production.
+This is just an experimental message queue and should not be used in production.
 
 ```txt
                 BROKER
