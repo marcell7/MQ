@@ -1,7 +1,9 @@
 # MQ
 
-This is just an experimental message queue and should not be used in production.
+**!!! This is just an experimental message queue and should not be used in any serious projects !!!**
 
+Meant for experimentation only.
+___
 ```txt
                 BROKER
               | topic1 | -> subscribers
