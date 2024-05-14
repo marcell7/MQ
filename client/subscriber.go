@@ -13,6 +13,7 @@ import (
 type Subscriber interface {
 	Subscribe(string) error                           // Subscribes to the user provided topic
 	Receive(string) (*protocol.DefaultMessage, error) // Receive the last message from the topic queue (FIFO style)
+	Close() error                                     // Closes the connection
 	start() error                                     // Starts listening for incoming messages
 	connect() error                                   // Connects the client to the broker (tcp server)
 	register() error                                  // Registers the client as a subscriber on the broker
@@ -77,6 +78,13 @@ func (ds *DefaultSubscriber) Receive(topic string) (*protocol.DefaultMessage, er
 		// Error received from the broker
 		return nil, errors.New(errMsg.Payload.Error)
 	}
+}
+
+func (ds *DefaultSubscriber) Close() error {
+	if err := ds.conn.Close(); err != nil {
+		return err
+	}
+	return nil
 }
 
 func (ds *DefaultSubscriber) start() error {

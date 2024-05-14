@@ -8,6 +8,7 @@ import (
 type Topic interface {
 	addItem(*Item) error                 // Adds an item to the topics's queue
 	addSubscription(string, *Subscriber) // Adds a subscription to the topic
+	deleteSubscription(string)           // Deletes a subscription
 }
 
 // Implements Topic interface
@@ -48,6 +49,12 @@ func (dt *DefaultTopic) addSubscription(id string, subscriber *Subscriber) {
 	// Change to &Subscription{id:id, subscriber:subscriber}
 	subscription := newSubscription(id, subscriber)
 	dt.Subscriptions[id] = subscription
+	dt.mu.Unlock()
+}
+
+func (dt *DefaultTopic) deleteSubscription(id string) {
+	dt.mu.Lock()
+	delete(dt.Subscriptions, id)
 	dt.mu.Unlock()
 }
 

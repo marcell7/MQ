@@ -91,6 +91,7 @@ func (b *Broker) handleConnection(conn net.Conn) error {
 			b.removeClient(publisher)
 		}
 		if subscriber != nil {
+			b.removeAllClientSubscriptions(subscriber)
 			b.removeClient(subscriber)
 		}
 		fmt.Println("Dropping a connection with client")
@@ -180,6 +181,13 @@ func (b *Broker) removeClient(client Client) {
 		delete(b.publishers, c.id)
 	case *Subscriber:
 		delete(b.subscribers, c.id)
+
 	}
 	b.mu.Unlock()
+}
+
+func (b *Broker) removeAllClientSubscriptions(subscriber *Subscriber) {
+	for _, topic := range b.Topics {
+		topic.deleteSubscription(subscriber.id)
+	}
 }
